@@ -1,0 +1,206 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #3498db, #2c3e50);
+  color: white;
+}
+
+.container {
+  width: 500px;
+  min-height: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin: 20px 0;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.score-board {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.score {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 30px;
+}
+
+.score p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.result {
+  margin: 15px 0;
+  text-align: center;
+}
+
+#result-text {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  min-height: 46px; /* Ensure consistent height */
+}
+
+.game-area {
+  width: 100%;
+  margin: 20px 0;
+  position: relative;
+  height: 200px;
+}
+
+.hands {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.hand {
+  position: relative;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  min-width: 150px;
+  min-height: 150px;
+}
+
+.hand-model {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+  min-width: 150px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Styles for the fallback game */
+.hand-model div {
+  font-size: 24px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+/* Canvas element styling for THREE.js */
+.hand-model canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.option {
+  padding: 12px 24px;
+  background: #f1c40f;
+  border: none;
+  border-radius: 5px;
+  color: #2c3e50;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option:hover {
+  background: #f39c12;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.option:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reset-btn {
+  padding: 10px 20px;
+  background: #e74c3c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reset-btn:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  20%, 60% { transform: rotate(-15deg); }
+  40%, 80% { transform: rotate(15deg); }
+}
+
+.winner {
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  animation: winner 1s ease infinite;
+}
+
+@keyframes winner {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Status text for showing game mode */
+.status-message {
+  color: #ecf0f1;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 15px;
+  font-style: italic;
+} 
