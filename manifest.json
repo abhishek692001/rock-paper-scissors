@@ -20,9 +20,28 @@
     "service_worker": "background.js"
   },
   "permissions": ["storage"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
   "web_accessible_resources": [
     {
-      "resources": ["three.min.js", "simple-styles.css", "popup-simple.js", "popup-simple.html"],
+      "resources": [
+        "three.min.js", 
+        "simple-styles.css", 
+        "popup-simple.js", 
+        "popup-simple.html",
+        "emoji-ui.css",
+        "popup-emoji.js",
+        "popup-emoji.html",
+        "sounds/click.mp3",
+        "sounds/win.mp3",
+        "sounds/lose.mp3",
+        "sounds/draw.mp3",
+        "mode-switcher.js",
+        "popup-emoji-styles.css",
+        "popup-init.js",
+        "styles.css"
+      ],
       "matches": ["<all_urls>"]
     }
   ]

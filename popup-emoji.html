@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors - Emoji Edition</title>
+  <link rel="stylesheet" href="emoji-ui.css">
+  <link rel="stylesheet" href="popup-emoji-styles.css">
+</head>
+<body>
+  <div class="emoji-container">
+    <div class="emoji-header">
+      <h1 class="emoji-title">Rock Paper Scissors</h1>
+      
+      <div class="mode-switcher">
+        <span>Mode: </span>
+        <select id="game-mode">
+          <option value="advanced">Advanced 3D</option>
+          <option value="simple">Simple 3D</option>
+          <option value="emoji" selected>Emoji Style</option>
+        </select>
+        <button id="apply-mode">Apply</button>
+      </div>
+      
+      <button class="lets-play" id="play-btn">Let's Play!</button>
+    </div>
+
+    <div class="emoji-scoreboard">
+      <div class="emoji-score">
+        <div class="emoji-score-title">You</div>
+        <div class="emoji-score-value" id="user-score">0</div>
+      </div>
+      <div class="emoji-score-divider">:</div>
+      <div class="emoji-score">
+        <div class="emoji-score-title">Computer</div>
+        <div class="emoji-score-value" id="computer-score">0</div>
+      </div>
+    </div>
+
+    <div class="vs-display">
+      <div class="vs-hand" id="user-hand-container">
+        <h2>Your Hand</h2>
+        <!-- User hand will be displayed here -->
+      </div>
+      <div class="vs-text">VS</div>
+      <div class="vs-hand" id="computer-hand-container">
+        <h2>Computer's Hand</h2>
+        <!-- Computer hand will be displayed here -->
+      </div>
+    </div>
+
+    <div class="emoji-result" id="result-message">
+      Choose your move below!
+    </div>
+
+    <div class="emoji-choices">
+      <div class="emoji-choice emoji-choice-rock" id="rock-btn">
+        <div class="emoji-hand rock-hand float-animation"></div>
+        <div class="emoji-choice-label">Rock</div>
+      </div>
+      <div class="emoji-choice emoji-choice-paper" id="paper-btn">
+        <div class="emoji-hand paper-hand float-animation"></div>
+        <div class="emoji-choice-label">Paper</div>
+      </div>
+      <div class="emoji-choice emoji-choice-scissors" id="scissors-btn">
+        <div class="emoji-hand scissors-hand float-animation"></div>
+        <div class="emoji-choice-label">Scissors</div>
+      </div>
+    </div>
+
+    <button class="emoji-reset" id="reset-btn">Reset Game</button>
+  </div>
+
+  <audio id="click-sound" src="sounds/click.mp3" preload="auto"></audio>
+  <audio id="win-sound" src="sounds/win.mp3" preload="auto"></audio>
+  <audio id="lose-sound" src="sounds/lose.mp3" preload="auto"></audio>
+  <audio id="draw-sound" src="sounds/draw.mp3" preload="auto"></audio>
+
+  <script src="popup-init.js"></script>
+  <script src="popup-emoji.js"></script>
+  <script src="mode-switcher.js"></script>
+</body>
+</html> 

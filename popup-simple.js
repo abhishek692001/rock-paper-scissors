@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     handImage.style.alignItems = 'center';
     handImage.style.justifyContent = 'center';
     handImage.style.flexDirection = 'column';
-    handImage.style.perspective = '600px';
+    handImage.style.perspective = '500px';
     
     // Use different HTML/CSS for each gesture
     let handHtml = '';
@@ -136,11 +136,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function animate() {
       time += 0.02;
       
-      // Create a floating and rotation effect
-      const rotateY = Math.sin(time) * 10;
-      const rotateX = 20 + Math.sin(time * 0.5) * 5;
-      const translateY = Math.sin(time * 0.7) * 6;
-      const translateZ = 20 + Math.sin(time * 0.3) * 5;
+      // Create a floating and rotation effect with smaller values
+      const rotateY = Math.sin(time) * 8;
+      const rotateX = 15 + Math.sin(time * 0.5) * 3;
+      const translateY = Math.sin(time * 0.7) * 4;
+      const translateZ = 15 + Math.sin(time * 0.3) * 3;
       
       element.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateY(${translateY}px) translateZ(${translateZ}px)`;
       
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function pulse() {
       if (growing) {
         scale += 0.01;
-        if (scale >= 1.15) growing = false;
+        if (scale >= 1.1) growing = false;
       } else {
         scale -= 0.01;
         if (scale <= 1) {

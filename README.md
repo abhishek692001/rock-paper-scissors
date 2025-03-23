@@ -1,48 +1,74 @@
-# Rock Paper Scissors 3D Chrome Extension
+# Rock Paper Scissors Chrome Extension
 
-A fun and interactive Chrome extension that lets you play the classic game of Rock Paper Scissors with 3D hand animations.
+A fun and interactive Rock Paper Scissors game as a Chrome extension, featuring multiple game modes with different visual styles.
 
 ## Features
 
-### Two Game Modes
-- **Advanced 3D Mode**: Detailed hand models with complex finger animations
-- **Simple 3D Mode**: Clean CSS-based 3D visuals that work on any system
-- Easy switch between modes with a single click
+- **Three Game Modes**: Choose between Advanced 3D, Simple 3D, and Emoji Style
+- **Interactive 3D Hands**: Realistic hand models in the Advanced 3D mode
+- **Cute Emoji Style**: Colorful and playful emoji-like hand gestures
+- **Sound Effects**: Audio feedback for a more immersive experience
+- **Score Tracking**: Keep track of wins and losses
+- **Compact Design**: Fits perfectly in a popup window without scrolling
+- **Responsive Design**: Works on different screen sizes
 
-### 3D Hand Animations
-- Realistic 3D hand models that show rock, paper, and scissors gestures
-- Smooth animations during gameplay
-- CSS 3D transforms for reliable rendering across all browsers
+## Game Modes
 
-### Smart Fallback System
-- Automatically detects if 3D rendering is available
-- Gracefully falls back to a simplified version if:
-  - WebGL is not supported by your browser
-  - Three.js fails to load
-  - Any other 3D initialization issues occur
+### Advanced 3D
+- Uses Three.js for realistic 3D hand models
+- Full WebGL implementation for a premium experience
+- Detailed hand meshes and lighting
 
-### Game Mechanics
-- Play against a computer opponent with random selection
-- Score tracking that persists during your session
-- Intuitive interface with clear feedback on wins, losses, and draws
-- Reset button to start a new game
+### Simple 3D
+- CSS-based 3D effects for better compatibility
+- Works even when WebGL is not available
+- Stylish gesture representations
 
-### Lightweight and Fast
-- Optimized code for smooth performance
-- No external dependencies
-- Clean, responsive design that works on any Chrome installation
+### Emoji Style
+- Cute and colorful emoji-like interface
+- Playful animations and effects
+- Fun sound effects
+- Kid-friendly design
 
 ## How to Play
-1. Click the extension icon in your Chrome toolbar
-2. Choose your preferred mode (Advanced 3D or Simple 3D)
-3. Select your move by clicking Rock, Paper, or Scissors
-4. Watch as the 3D hands change to show your choice and the computer's choice
-5. See who wins based on the classic rules:
-   - Rock crushes Scissors
-   - Scissors cuts Paper
-   - Paper covers Rock
-6. Keep track of your score at the top of the game
-7. Click "Reset Game" when you want to start over
+
+1. Select your preferred game mode using the dropdown menu
+2. Click "Let's Play" (in Emoji mode) or just select a gesture to begin
+3. Choose Rock, Paper, or Scissors by clicking the corresponding button
+4. Watch the animation and see who wins
+5. Track your score at the top of the screen
+6. Click "Reset Game" to start over
+
+## Installation
+
+1. Download the extension files
+2. Open Chrome and go to `chrome://extensions/`
+3. Enable "Developer mode" in the top-right corner
+4. Click "Load unpacked" and select the folder containing the extension files
+5. The Rock Paper Scissors extension is now installed!
+
+## Development
+
+This extension was built using:
+- HTML5, CSS3, and JavaScript
+- Three.js for 3D rendering in Advanced mode
+- CSS animations for visual effects
+- Chrome Extension API
+
+## Troubleshooting
+
+If the Advanced 3D mode doesn't work properly:
+1. Make sure WebGL is enabled in your browser
+2. Try switching to Simple 3D or Emoji Style mode
+3. Check the browser console for any error messages
+
+## Credits
+
+- Developed by: Your Name
+- Icons and design: Original creation
+- Sound effects: Creative Commons licensed
+
+Enjoy playing Rock Paper Scissors with style!
 
 ## Compatible Browsers
 - Google Chrome (version 80+)
@@ -53,9 +79,8 @@ A fun and interactive Chrome extension that lets you play the classic game of Ro
 - Uses CSS 3D transforms for reliable 3D effects
 - Implements Chrome Extensions Manifest V3
 - Includes a service worker for background processes
-
-## Installation
-See [INSTALL.md](INSTALL.md) for detailed installation instructions.
+- Optimized dimensions (480px × 560px) for perfect fit in extension popup
+- Carefully designed to avoid scrolling for better user experience
 
 ## License
 This project is open source and available under the MIT License.

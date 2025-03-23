@@ -7,22 +7,80 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="simple-styles.css">
     <style>
-        /* Additional dimensions to ensure proper sizing */
+        /* Adjusted dimensions to ensure proper sizing without scrolling */
         .container {
-            min-height: 680px;
-            width: 500px;
+            min-height: 520px; /* Reduced height */
+            width: 480px;
             background-color: rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            padding: 25px;
+            padding: 15px; /* Reduced padding */
             margin: 0 auto;
+        }
+        
+        .hand-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            height: 200px; /* Increased height */
+        }
+        
+        .hand {
+            width: 45%;
+            text-align: center;
+            padding: 10px; /* Increased padding */
+            margin: 5px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 180px; /* Increased height */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hand h2 {
+            margin: 0 0 10px 0; /* Increased margin */
+            font-size: 16px; /* Increased font size */
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .hand-image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 140px !important; /* Force height */
+            min-height: 140px !important; /* Force min-height */
+        }
+        
+        .buttons button {
+            padding: 8px 15px; /* Increased padding */
+            margin: 5px;
+            font-size: 14px;
+        }
+        
+        .status {
+            min-height: 20px;
+            padding: 8px; /* Reduced padding */
+            font-size: 15px; /* Smaller font */
+        }
+        
+        .score-board {
+            margin-bottom: 10px; /* Increased margin */
+        }
+        
+        h1 {
+            font-size: 24px; /* Smaller font */
+            margin: 8px 0; /* Reduced margin */
         }
         
         @media (max-width: 520px) {
             .container {
                 width: 100%;
-                min-height: 750px;
-                padding: 15px;
+                min-height: 520px;
+                padding: 12px; /* Reduced padding */
             }
         }
     </style>
@@ -32,8 +90,13 @@
         <h1>Rock Paper Scissors</h1>
         
         <div class="mode-switch">
-            <span>Currently in Simple Mode</span>
-            <button id="switch-to-advanced">Switch to Advanced 3D</button>
+            <span>Mode: </span>
+            <select id="game-mode">
+                <option value="advanced">Advanced 3D</option>
+                <option value="simple" selected>Simple 3D</option>
+                <option value="emoji">Emoji Style</option>
+            </select>
+            <button id="apply-mode">Apply</button>
         </div>
         
         <div class="score-board">
@@ -66,6 +129,8 @@
         </div>
     </div>
 
+    <script src="popup-init.js"></script>
     <script src="popup-simple.js"></script>
+    <script src="mode-switcher.js"></script>
 </body>
 </html> 

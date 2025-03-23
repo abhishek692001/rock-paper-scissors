@@ -7,16 +7,80 @@
   <link rel="stylesheet" href="styles.css">
   <script src="three.min.js"></script>
   <style>
-    /* Additional dimensions to ensure proper sizing */
+    /* Adjusted dimensions to ensure proper sizing without scrolling */
     .container {
-      min-height: 600px;
-      width: 500px;
+      min-height: 520px;
+      width: 480px;
+      background-color: rgba(0, 0, 0, 0.08);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      padding: 15px;
+    }
+    
+    .hand-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      height: 200px;
+    }
+    
+    .hand {
+      width: 45%;
+      text-align: center;
+      padding: 10px;
+      margin: 5px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .hand h2 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .hand-model {
+      flex: 1;
+      min-height: 140px;
+      width: 100%;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .buttons button {
+      padding: 8px 15px;
+      margin: 5px;
+      font-size: 14px;
+    }
+    
+    .status {
+      min-height: 20px;
+      padding: 8px;
+      font-size: 15px;
+    }
+    
+    .score-board {
+      margin-bottom: 10px;
+    }
+    
+    h1 {
+      font-size: 24px;
+      margin: 8px 0;
     }
     
     @media (max-width: 520px) {
       .container {
         width: 100%;
-        min-height: 700px;
+        min-height: 520px;
+        padding: 12px;
       }
     }
   </style>
@@ -30,6 +94,7 @@
       <select id="game-mode">
         <option value="advanced">Advanced 3D</option>
         <option value="simple">Simple 3D</option>
+        <option value="emoji">Emoji Style</option>
       </select>
       <button id="apply-mode">Apply</button>
     </div>
@@ -64,6 +129,8 @@
     </div>
   </div>
 
+  <script src="popup-init.js"></script>
   <script src="popup.js"></script>
+  <script src="mode-switcher.js"></script>
 </body>
 </html> 
