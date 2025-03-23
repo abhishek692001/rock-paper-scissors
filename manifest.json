@@ -22,7 +22,7 @@
   "permissions": ["storage"],
   "web_accessible_resources": [
     {
-      "resources": ["three.min.js"],
+      "resources": ["three.min.js", "simple-styles.css", "popup-simple.js", "popup-simple.html"],
       "matches": ["<all_urls>"]
     }
   ]

@@ -3,49 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Rock Paper Scissors</title>
+  <title>Rock Paper Scissors</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="three.min.js"></script>
+  <style>
+    /* Additional dimensions to ensure proper sizing */
+    .container {
+      min-height: 600px;
+      width: 500px;
+    }
+    
+    @media (max-width: 520px) {
+      .container {
+        width: 100%;
+        min-height: 700px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>Rock Paper Scissors</h1>
     
+    <div class="mode-switch">
+      <span>Mode: </span>
+      <select id="game-mode">
+        <option value="advanced">Advanced 3D</option>
+        <option value="simple">Simple 3D</option>
+      </select>
+      <button id="apply-mode">Apply</button>
+    </div>
+    
     <div class="score-board">
       <div class="score">
         <p>You: <span id="user-score">0</span></p>
+      </div>
+      <div class="score">
         <p>Computer: <span id="computer-score">0</span></p>
       </div>
     </div>
     
-    <div class="result">
-      <p id="result-text">Choose your move!</p>
-    </div>
+    <div class="status" id="status-message">Choose your gesture!</div>
     
-    <div class="game-area">
-      <div class="hands">
-        <div class="hand user-hand">
-          <div class="hand-model" id="user-hand"></div>
-        </div>
-        <div class="hand computer-hand">
-          <div class="hand-model" id="computer-hand"></div>
-        </div>
+    <div class="hand-container">
+      <div class="hand user-hand">
+        <h2>Your Hand</h2>
+        <div id="user-hand" class="hand-model"></div>
+      </div>
+      <div class="hand computer-hand">
+        <h2>Computer's Hand</h2>
+        <div id="computer-hand" class="hand-model"></div>
       </div>
     </div>
     
-    <div class="options">
-      <button id="rock" class="option">Rock</button>
-      <button id="paper" class="option">Paper</button>
-      <button id="scissors" class="option">Scissors</button>
+    <div class="buttons">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+      <button id="reset-btn">Reset Game</button>
     </div>
-    
-    <button id="reset" class="reset-btn">Reset Game</button>
-    
-    <div class="status-message" id="status-message">Loading game...</div>
   </div>
 
-  <!-- Use local Three.js file instead of CDN -->
-  <script src="three.min.js"></script>
-  
   <script src="popup.js"></script>
 </body>
 </html> 

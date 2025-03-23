@@ -1,0 +1,294 @@
+/* Add these styles to your existing styles.css file or create a new one */
+
+/* Gesture shapes */
+.gesture-shape {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  position: relative;
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.gesture-label {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #f8f9fa;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Rock (fist) */
+.rock .fist {
+  width: 120px;
+  height: 120px;
+  background-color: #f5d0a9;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transform: translateZ(20px);
+}
+
+.rock .fist:before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 40%;
+  background-color: #e6c09f;
+  border-radius: 20px;
+  bottom: 0;
+  left: 15%;
+  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
+}
+
+/* Paper (open hand) */
+.paper .palm {
+  width: 85px;
+  height: 120px;
+  background-color: #f5d0a9;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transform: translateZ(20px);
+}
+
+.paper .fingers {
+  position: absolute;
+  top: -45px;
+  left: 10px;
+  width: 80px;
+  height: 60px;
+}
+
+.paper .fingers:before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 70px;
+  background-color: #f5d0a9;
+  border-radius: 8px;
+  top: -10px;
+  left: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.paper .fingers:after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 75px;
+  background-color: #f5d0a9;
+  border-radius: 8px;
+  top: -15px;
+  left: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.paper .palm:before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 65px;
+  background-color: #f5d0a9;
+  border-radius: 8px;
+  top: -5px;
+  right: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.paper .palm:after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 40px;
+  background-color: #f5d0a9;
+  border-radius: 8px;
+  bottom: 45px;
+  left: -18px;
+  transform: rotate(45deg);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Scissors (two fingers) */
+.scissors .palm {
+  width: 85px;
+  height: 120px;
+  background-color: #f5d0a9;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transform: translateZ(20px);
+}
+
+.scissors .v-shape {
+  position: absolute;
+  top: -60px;
+  left: 10px;
+  width: 65px;
+  height: 80px;
+}
+
+.scissors .v-shape:before {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 70px;
+  background-color: #f5d0a9;
+  border-radius: 8px;
+  top: 0;
+  left: 0;
+  transform: rotate(-20deg);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.scissors .v-shape:after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 70px;
+  background-color: #f5d0a9;
+  border-radius: 8px;
+  top: 0;
+  right: 0;
+  transform: rotate(20deg);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.scissors .palm:after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 40px;
+  background-color: #f5d0a9;
+  border-radius: 8px;
+  bottom: 45px;
+  left: -18px;
+  transform: rotate(45deg);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Add a 3D effect with rotation and floating animation */
+.hand-image-container {
+  perspective: 600px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gesture-shape {
+  transform: rotateY(0deg) rotateX(20deg) translateZ(20px);
+  animation: float 4s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: rotateY(-10deg) rotateX(20deg) translateY(0) translateZ(20px); }
+  50% { transform: rotateY(10deg) rotateX(25deg) translateY(-10px) translateZ(20px); }
+  100% { transform: rotateY(-10deg) rotateX(20deg) translateY(0) translateZ(20px); }
+}
+
+/* Add styling for user vs computer */
+.user-hand .gesture-label {
+  color: #3498db;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.computer-hand .gesture-label {
+  color: #e74c3c;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhance winner animation */
+.winner .gesture-shape {
+  animation: winner-float 1.2s infinite ease-in-out;
+}
+
+@keyframes winner-float {
+  0% { transform: rotateY(-15deg) rotateX(20deg) translateZ(20px) scale(1); }
+  50% { transform: rotateY(15deg) rotateX(25deg) translateZ(30px) scale(1.08); }
+  100% { transform: rotateY(-15deg) rotateX(20deg) translateZ(20px) scale(1); }
+}
+
+/* Add shake animation for playing the game */
+.hand-image-container.shake {
+  animation: shake 0.6s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: rotate(10deg); }
+  20% { transform: rotate(-10deg); }
+  40% { transform: rotate(7deg); }
+  60% { transform: rotate(-7deg); }
+  80% { transform: rotate(4deg); }
+  100% { transform: rotate(0); }
+}
+
+/* Add additional styles for the hand container */
+.hand-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 25px 0;
+}
+
+.hand {
+  text-align: center;
+  width: 48%;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  height: 280px;
+}
+
+.hand:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.25);
+}
+
+.hand h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #f8f9fa;
+  font-size: 18px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Add skin tone variations for realism */
+.palm, .fingers:before, .fingers:after, .palm:before, .palm:after, .v-shape:before, .v-shape:after, .fist {
+  background-image: linear-gradient(to bottom right, #f5d0a9, #e6c09f);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Add responsive adjustments */
+@media (max-width: 520px) {
+  .gesture-shape {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .rock .fist {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .paper .palm, .scissors .palm {
+    width: 75px;
+    height: 100px;
+  }
+  
+  .hand {
+    height: 250px;
+    width: 100%;
+  }
+  
+  .hand-image-container {
+    height: 180px;
+  }
+  
+  .hand-container {
+    flex-direction: column;
+    gap: 25px;
+  }
+} 

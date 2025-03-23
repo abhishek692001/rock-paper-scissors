@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors - Simple 3D</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="simple-styles.css">
+    <style>
+        /* Additional dimensions to ensure proper sizing */
+        .container {
+            min-height: 680px;
+            width: 500px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 520px) {
+            .container {
+                width: 100%;
+                min-height: 750px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rock Paper Scissors</h1>
+        
+        <div class="mode-switch">
+            <span>Currently in Simple Mode</span>
+            <button id="switch-to-advanced">Switch to Advanced 3D</button>
+        </div>
+        
+        <div class="score-board">
+            <div class="score">
+                <p>You: <span id="user-score">0</span></p>
+            </div>
+            <div class="score">
+                <p>Computer: <span id="computer-score">0</span></p>
+            </div>
+        </div>
+
+        <div class="status" id="status-message">Choose your gesture!</div>
+
+        <div class="hand-container">
+            <div class="hand user-hand">
+                <h2>Your Hand</h2>
+                <div id="user-hand-div" class="hand-image-container"></div>
+            </div>
+            <div class="hand computer-hand">
+                <h2>Computer's Hand</h2>
+                <div id="computer-hand-div" class="hand-image-container"></div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button id="rock-btn">Rock</button>
+            <button id="paper-btn">Paper</button>
+            <button id="scissors-btn">Scissors</button>
+            <button id="reset-btn">Reset Game</button>
+        </div>
+    </div>
+
+    <script src="popup-simple.js"></script>
+</body>
+</html> 
