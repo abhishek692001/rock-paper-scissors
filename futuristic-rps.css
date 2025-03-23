@@ -1,0 +1,622 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #00e5ff;
+  --secondary-color: #ff00e5;
+  --bg-color: #0f0f1a;
+  --bg-gradient: linear-gradient(135deg, #1e1e2e, #0f0f1a);
+  --panel-bg: rgba(30, 30, 48, 0.7);
+  --border-glow: 0 0 10px var(--primary-color);
+  --text-glow: 0 0 5px var(--primary-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-gradient);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.container {
+  width: 480px;
+  min-height: 520px;
+  background: var(--panel-bg);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.header h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 10px rgba(0, 229, 255, 0.3);
+  letter-spacing: 2px;
+}
+
+.glow-line {
+  height: 2px;
+  width: 60%;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  box-shadow: var(--border-glow);
+}
+
+.battle-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 15px 0;
+  position: relative;
+  height: 180px;
+}
+
+.player-side, .computer-side {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.player-label, .computer-label {
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: var(--text-glow);
+}
+
+.player-label {
+  color: var(--primary-color);
+}
+
+.computer-label {
+  color: var(--secondary-color);
+}
+
+.player, .computer {
+  position: relative;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Futuristic Hand Styles */
+.futuristic-hand {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.player-hand {
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 15px var(--primary-color);
+}
+
+.computer-hand {
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0 0 15px var(--secondary-color);
+}
+
+.hand-effect {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 70%);
+  animation: pulse 2s infinite alternate;
+}
+
+.player-hand .hand-effect {
+  background-color: rgba(0, 229, 255, 0.05);
+}
+
+.computer-hand .hand-effect {
+  background-color: rgba(255, 0, 229, 0.05);
+}
+
+/* Rock Hand Styles */
+.rock-hand::before {
+  content: '✊';
+  font-size: 50px;
+  display: block;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+/* Paper Hand Styles */
+.paper-hand::before {
+  content: '✋';
+  font-size: 50px;
+  display: block;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+/* Scissors Hand Styles */
+.scissors-hand::before {
+  content: '✌️';
+  font-size: 50px;
+  display: block;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.vs-indicator {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  padding: 15px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.score-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.score-container {
+  text-align: center;
+  padding: 0 20px;
+}
+
+.score-label {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.score-value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.score-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.message {
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 20px 0;
+  letter-spacing: 1px;
+  text-shadow: var(--text-glow);
+  color: var(--primary-color);
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.option-btn {
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 25px;
+  border-radius: 10px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.option-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.option-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  border-color: var(--primary-color);
+}
+
+.option-btn:hover::before {
+  opacity: 0.2;
+}
+
+.option-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.stone-icon::after {
+  content: '✊';
+  font-size: 1.8rem;
+}
+
+.paper-icon::after {
+  content: '✋';
+  font-size: 1.8rem;
+}
+
+.scissors-icon::after {
+  content: '✌️';
+  font-size: 1.8rem;
+}
+
+.option-btn:active {
+  transform: translateY(0);
+}
+
+.result-display {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.result-message {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  height: 30px;
+  opacity: 0.8;
+}
+
+.reset-btn {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
+}
+
+.shakeComputer {
+  animation: shakeComputer 0.8s linear;
+}
+
+.shakePlayer {
+  animation: shakePlayer 0.8s linear;
+}
+
+@keyframes shakeComputer {
+  0% {
+    transform: rotate(-30deg);
+  }
+  25% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  75% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes shakePlayer {
+  0% {
+    transform: rotate(30deg);
+  }
+  25% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  75% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Winner animation */
+.winner {
+  animation: winner 1s ease-in-out infinite alternate;
+}
+
+@keyframes winner {
+  from {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    transform: scale(1);
+  }
+  to {
+    filter: drop-shadow(0 0 15px var(--primary-color));
+    transform: scale(1.05);
+  }
+}
+
+/* Particles background */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px, 20px 20px;
+  background-position: 0 0, 20px 20px;
+  animation: particleMove 50s linear infinite;
+}
+
+@keyframes particleMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(40px, 40px);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .battle-area {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .vs-indicator {
+    margin: 10px 0;
+  }
+
+  .player-side, .computer-side {
+    width: 100%;
+  }
+
+  .score-board {
+    flex-wrap: wrap;
+  }
+
+  .score-container {
+    padding: 10px;
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .option-btn {
+    width: 80%;
+    max-width: 200px;
+  }
+}
+
+/* Add these new styles to the existing CSS file */
+
+.mode-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 204, 255, 0.4);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 204, 255, 0.2);
+  max-width: 400px;
+}
+
+.mode-switch span {
+  color: #0cf;
+  margin-right: 10px;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mode-switch select {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: 1px solid rgba(0, 204, 255, 0.5);
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.mode-switch select:hover, 
+.mode-switch select:focus {
+  border-color: #0cf;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.5);
+}
+
+.mode-switch select option {
+  background: #111;
+  color: #fff;
+}
+
+.mode-switch button {
+  background: linear-gradient(to right, #0052cc, #0cf);
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+
+.mode-switch button:hover {
+  background: linear-gradient(to right, #0066ff, #00e6ff);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.debug-links {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.debug-links:hover {
+  opacity: 1;
+}
+
+.debug-links a {
+  color: #0cf;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 4px 8px;
+  margin: 0 5px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+
+.debug-links a:hover {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.5);
+}
+
+/* Animation for Hand Effect */
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Winner effect */
+.winner .futuristic-hand {
+  animation: winner 1s infinite alternate;
+}
+
+@keyframes winner {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px currentColor;
+  }
+  100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px currentColor, 0 0 50px currentColor;
+  }
+}
+
+/* Hand shake animation */
+.shakePlayer .futuristic-hand {
+  animation: shakePlayer 0.8s ease-in-out;
+}
+
+.shakeComputer .futuristic-hand {
+  animation: shakeComputer 0.8s ease-in-out;
+} 

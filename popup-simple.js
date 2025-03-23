@@ -25,27 +25,42 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Status message found:', statusMessage !== null);
   console.log('Switch to advanced button found:', switchToAdvancedBtn !== null);
   
+  // Initialize sound effects
+  if (!SoundEffects.init()) {
+    console.warn('Sound effects could not be initialized. Game will continue without sound.');
+  }
+  
+  // Add click event for any interaction to enable audio on iOS/Safari
+  document.addEventListener('click', function enableAudio() {
+    // Try to resume AudioContext if it was suspended
+    if (SoundEffects.audioContext && SoundEffects.audioContext.state === 'suspended') {
+      SoundEffects.audioContext.resume();
+    }
+    // Remove the event listener after first click
+    document.removeEventListener('click', enableAudio);
+  }, { once: true });
+  
   // Set up the game
   setupGame();
   
   // Set up button click handlers
   rockBtn.addEventListener('click', function() {
-    console.log('Rock button clicked');
+    SoundEffects.play('click');
     play('rock');
   });
   
   paperBtn.addEventListener('click', function() {
-    console.log('Paper button clicked');
+    SoundEffects.play('click');
     play('paper');
   });
   
   scissorsBtn.addEventListener('click', function() {
-    console.log('Scissors button clicked');
+    SoundEffects.play('click');
     play('scissors');
   });
   
   resetBtn.addEventListener('click', function() {
-    console.log('Reset button clicked');
+    SoundEffects.play('click');
     resetGame();
   });
   
@@ -226,11 +241,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (result === 'user') {
       userScore++;
       resultMessage = `You win! ${userChoice} beats ${computerChoice} 🎉`;
+      SoundEffects.play('win');
     } else if (result === 'computer') {
       computerScore++;
       resultMessage = `Computer wins! ${computerChoice} beats ${userChoice} 😢`;
+      SoundEffects.play('lose');
     } else {
       resultMessage = "It's a draw! 🤝";
+      SoundEffects.play('draw');
     }
     
     userScoreSpan.textContent = userScore;

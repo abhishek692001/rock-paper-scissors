@@ -29,27 +29,58 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Game mode select found:', gameModeSelect !== null);
   console.log('Apply mode button found:', applyModeBtn !== null);
   
+  // Initialize sound effects
+  if (window.SoundEffects && typeof SoundEffects.init === 'function') {
+    if (!SoundEffects.init()) {
+      console.warn('Sound effects could not be initialized. Game will continue without sound.');
+    } else {
+      console.log('Sound effects initialized successfully');
+    }
+    
+    // Add click event for any interaction to enable audio on iOS/Safari
+    document.addEventListener('click', function enableAudio() {
+      // Try to resume AudioContext if it was suspended
+      if (SoundEffects.audioContext && SoundEffects.audioContext.state === 'suspended') {
+        SoundEffects.audioContext.resume().then(() => {
+          console.log('AudioContext resumed successfully');
+          // Play a silent sound to fully activate audio
+          SoundEffects.play('click');
+        }).catch(error => {
+          console.error('Failed to resume AudioContext:', error);
+        });
+      }
+      // Remove the event listener after first click
+      document.removeEventListener('click', enableAudio);
+    }, { once: true });
+  } else {
+    console.warn('SoundEffects module not found');
+  }
+  
   // Set up the CSS-based 3D hand models
   setupCSSHandModels();
   
   // Set up button click handlers
   rockBtn.addEventListener('click', function() {
     console.log('Rock button clicked');
+    if (window.SoundEffects) SoundEffects.play('click');
     play('rock');
   });
   
   paperBtn.addEventListener('click', function() {
     console.log('Paper button clicked');
+    if (window.SoundEffects) SoundEffects.play('click');
     play('paper');
   });
   
   scissorsBtn.addEventListener('click', function() {
     console.log('Scissors button clicked');
+    if (window.SoundEffects) SoundEffects.play('click');
     play('scissors');
   });
   
   resetBtn.addEventListener('click', function() {
     console.log('Reset button clicked');
+    if (window.SoundEffects) SoundEffects.play('click');
     resetGame();
   });
   
@@ -203,6 +234,17 @@ document.addEventListener('DOMContentLoaded', function() {
     palmLines.style.borderRadius = '50%';
     palm.appendChild(palmLines);
     
+    // Add a second set of palm lines for more realism
+    const palmLines2 = document.createElement('div');
+    palmLines2.style.position = 'absolute';
+    palmLines2.style.top = '40%';
+    palmLines2.style.left = '15%';
+    palmLines2.style.width = '70%';
+    palmLines2.style.height = '20%';
+    palmLines2.style.borderTop = '1px solid rgba(0,0,0,0.1)';
+    palmLines2.style.borderRadius = '50%';
+    palm.appendChild(palmLines2);
+    
     return palm;
   }
   
@@ -228,8 +270,9 @@ document.addEventListener('DOMContentLoaded', function() {
     finger.style.boxShadow = '0 3px 6px rgba(0,0,0,0.2), inset 1px 1px 3px rgba(255,255,255,0.5)';  // Reduced shadow
     finger.style.border = '1px solid rgba(0,0,0,0.1)';
     
-    // Add finger joint for extended fingers
+    // Add fingernail for extended fingers
     if (!curled) {
+      // Add finger joint
       const joint = document.createElement('div');
       joint.style.position = 'absolute';
       joint.style.width = '100%';
@@ -238,6 +281,19 @@ document.addEventListener('DOMContentLoaded', function() {
       joint.style.top = '40%';
       joint.style.left = '0';
       finger.appendChild(joint);
+      
+      // Add fingernail
+      const nail = document.createElement('div');
+      nail.style.position = 'absolute';
+      nail.style.width = '90%';
+      nail.style.height = '12px';
+      nail.style.top = '2px';
+      nail.style.left = '5%';
+      nail.style.backgroundColor = '#f8f8f8';
+      nail.style.borderRadius = '4px 4px 2px 2px';
+      nail.style.boxShadow = 'inset 0 -2px 3px rgba(0,0,0,0.1)';
+      nail.style.border = '1px solid rgba(0,0,0,0.05)';
+      finger.appendChild(nail);
     }
     
     return finger;
@@ -271,6 +327,21 @@ document.addEventListener('DOMContentLoaded', function() {
     joint.style.left = '0';
     thumb.appendChild(joint);
     
+    // Add thumbnail for extended thumb
+    if (!curled) {
+      const nail = document.createElement('div');
+      nail.style.position = 'absolute';
+      nail.style.width = '70%';
+      nail.style.height = '10px';
+      nail.style.top = '3px';
+      nail.style.left = '15%';
+      nail.style.backgroundColor = '#f8f8f8';
+      nail.style.borderRadius = '4px 4px 2px 2px';
+      nail.style.boxShadow = 'inset 0 -2px 3px rgba(0,0,0,0.1)';
+      nail.style.border = '1px solid rgba(0,0,0,0.05)';
+      thumb.appendChild(nail);
+    }
+    
     return thumb;
   }
   
@@ -279,17 +350,24 @@ document.addEventListener('DOMContentLoaded', function() {
     let rotation = 0;
     let floatY = 0;
     let floatDirection = 1;
+    let floatX = 0;
+    let floatXDirection = 1;
     
     function animate() {
       rotation += 0.4;  // Slower rotation for more natural movement
       floatY += 0.04 * floatDirection;  // Slower floating
+      floatX += 0.02 * floatXDirection;  // Even slower horizontal floating
       
       // Change direction when reaching limits
       if (floatY > 3 || floatY < -3) {  // Reduced from 4/-4
         floatDirection *= -1;
       }
       
-      hand.style.transform = `rotateY(${rotation % 12 - 6}deg) rotateX(15deg) translateY(${floatY}px)`;  // Reduced rotation and tilt
+      if (floatX > 1.5 || floatX < -1.5) {
+        floatXDirection *= -1;
+      }
+      
+      hand.style.transform = `rotateY(${rotation % 12 - 6}deg) rotateX(15deg) translateY(${floatY}px) translateX(${floatX}px)`;  // Added horizontal movement
       requestAnimationFrame(animate);
     }
     
@@ -299,6 +377,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Play the game
   function play(userChoice) {
     console.log(`Playing with choice: ${userChoice}`);
+    
+    // Try to play a click sound when making a choice
+    tryPlaySound('click');
     
     // Update user's choice display
     updateCSSHandModel(userHandDiv, userChoice, false);
@@ -370,6 +451,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (result === 'user') {
       userScore++;
       resultMessage = `You win! ${userChoice} beats ${computerChoice} 🎉`;
+      // Play win sound with retry logic
+      tryPlaySound('win');
       
       // Add pulse animation to winner
       const userHandModel = userHandDiv.querySelector('.css-hand');
@@ -377,12 +460,16 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (result === 'computer') {
       computerScore++;
       resultMessage = `Computer wins! ${computerChoice} beats ${userChoice} 😢`;
+      // Play lose sound with retry logic
+      tryPlaySound('lose');
       
       // Add pulse animation to winner
       const computerHandModel = computerHandDiv.querySelector('.css-hand');
       if (computerHandModel) pulseAnimation(computerHandModel);
     } else {
       resultMessage = "It's a draw! 🤝";
+      // Play draw sound with retry logic
+      tryPlaySound('draw');
     }
     
     userScoreSpan.textContent = userScore;
@@ -391,11 +478,38 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(`Score updated - User: ${userScore}, Computer: ${computerScore}`);
   }
   
+  // Helper function to try playing a sound with retry logic
+  function tryPlaySound(soundName) {
+    if (!window.SoundEffects) {
+      console.warn('SoundEffects not available');
+      return;
+    }
+    
+    try {
+      // Resume audio context if it's suspended
+      if (SoundEffects.audioContext && SoundEffects.audioContext.state === 'suspended') {
+        SoundEffects.audioContext.resume()
+          .then(() => SoundEffects.play(soundName))
+          .catch(error => console.error('Error resuming audio context:', error));
+      } else {
+        SoundEffects.play(soundName);
+      }
+    } catch (error) {
+      console.error(`Error playing ${soundName} sound:`, error);
+    }
+  }
+  
   // Add a pulse animation effect to the winning hand
   function pulseAnimation(element) {
     let scale = 1;
     let growing = true;
     let animationCount = 0;
+    let initialTransform = element.style.transform;
+    
+    // Try to play a subtle "pop" sound for the pulse
+    if (window.SoundEffects) {
+      setTimeout(() => tryPlaySound('click'), 100);
+    }
     
     function pulse() {
       if (growing) {
@@ -409,10 +523,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
       
-      element.style.transform = `rotateY(${element.style.transform.match(/rotateY\(([^)]+)\)/)[1]}) rotateX(20deg) translateY(${element.style.transform.match(/translateY\(([^)]+)\)/)[1]}) scale(${scale})`;
+      // Extract needed transform components to avoid regex issues
+      let rotateY = '0deg';
+      let rotateX = '20deg';
+      let translateY = '0px';
+      
+      try {
+        const rotateYMatch = element.style.transform.match(/rotateY\(([^)]+)\)/);
+        const rotateXMatch = element.style.transform.match(/rotateX\(([^)]+)\)/);
+        const translateYMatch = element.style.transform.match(/translateY\(([^)]+)\)/);
+        
+        if (rotateYMatch) rotateY = rotateYMatch[1];
+        if (rotateXMatch) rotateX = rotateXMatch[1];
+        if (translateYMatch) translateY = translateYMatch[1];
+      } catch (e) {
+        console.warn('Transform parsing error:', e);
+      }
+      
+      element.style.transform = `rotateY(${rotateY}) rotateX(${rotateX}) translateY(${translateY}) scale(${scale})`;
       
       if (animationCount < 3) {
         requestAnimationFrame(pulse);
+      } else {
+        // Restore original transform without scale to prevent issues
+        element.style.transform = initialTransform;
       }
     }
     

@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
           window.location.href = 'popup-simple.html';
         } else if (selectedMode === 'emoji') {
           window.location.href = 'popup-emoji.html';
+        } else if (selectedMode === 'futuristic') {
+          window.location.href = 'futuristic-rps.html';
         }
       }
     });
@@ -54,6 +56,8 @@ function getCurrentMode(url) {
     return 'simple';
   } else if (url.includes('popup-emoji.html')) {
     return 'emoji';
+  } else if (url.includes('futuristic-rps.html')) {
+    return 'futuristic';
   } else {
     return 'advanced'; // Default to advanced for popup.html
   }

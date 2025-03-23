@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futuristic Rock Paper Scissors</title>
+  <link rel="stylesheet" href="futuristic-rps.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Select your Weapon</h1>
+      <div class="glow-line"></div>
+    </div>
+    
+    <div class="mode-switch">
+      <span>Mode: </span>
+      <select id="game-mode">
+        <option value="advanced">Advanced 3D</option>
+        <option value="simple">Simple 3D</option>
+        <option value="emoji">Emoji Style</option>
+        <option value="futuristic" selected>Futuristic</option>
+      </select>
+      <button id="apply-mode">Apply</button>
+    </div>
+    
+    <div class="battle-area">
+      <div class="player-side">
+        <div class="player-label">YOU</div>
+        <div class="player">
+          <div class="futuristic-hand player-hand rock-hand">
+            <div class="hand-effect"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="vs-indicator">VS</div>
+      
+      <div class="computer-side">
+        <div class="computer-label">CPU</div>
+        <div class="computer">
+          <div class="futuristic-hand computer-hand rock-hand">
+            <div class="hand-effect"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="score-board">
+      <div class="score-container">
+        <div class="score-label">Won</div>
+        <div class="score-value"><span class="playerPoints">0</span></div>
+      </div>
+      
+      <div class="score-divider"></div>
+      
+      <div class="score-container">
+        <div class="score-label">Lost</div>
+        <div class="score-value"><span class="computerPoints">0</span></div>
+      </div>
+      
+      <div class="score-divider"></div>
+      
+      <div class="score-container">
+        <div class="score-label">Draw</div>
+        <div class="score-value"><span class="drawPoints">0</span></div>
+      </div>
+    </div>
+    
+    <div class="message">CHOOSE AN OPTION</div>
+    
+    <div class="options">
+      <button type="button" class="option-btn" data-choice="STONE">
+        <div class="option-icon stone-icon"></div>
+        <span>ROCK</span>
+      </button>
+      <button type="button" class="option-btn" data-choice="PAPER">
+        <div class="option-icon paper-icon"></div>
+        <span>PAPER</span>
+      </button>
+      <button type="button" class="option-btn" data-choice="SCISSORS">
+        <div class="option-icon scissors-icon"></div>
+        <span>SCISSORS</span>
+      </button>
+    </div>
+    
+    <div class="result-display">
+      <div class="result-message">Ready to play!</div>
+      <button type="button" class="reset-btn">RESET GAME</button>
+    </div>
+    
+    <div class="debug-links">
+      <a href="sound-test.html" target="_blank" id="sound-test-link">Sound Test Page</a>
+    </div>
+  </div>
+
+  <div class="particles-container">
+    <div class="particles"></div>
+  </div>
+
+  <script src="popup-init.js"></script>
+  <script src="sound-effects-fallback.js"></script>
+  <script src="sound-effects.js"></script>
+  <script src="diagnostics.js"></script>
+  <script src="futuristic-rps.js"></script>
+  <script src="mode-switcher.js"></script>
+</body>
+</html> 

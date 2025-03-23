@@ -2,7 +2,7 @@
 // Handles game mode selection and persistence
 
 // Default game mode
-const DEFAULT_MODE = 'advanced'; // Other modes: 'simple', 'emoji'
+const DEFAULT_MODE = 'advanced'; // Other modes: 'simple', 'emoji', 'futuristic'
 
 // Listen for installation
 chrome.runtime.onInstalled.addListener(() => {
@@ -53,6 +53,8 @@ function switchToGameMode(mode) {
       return 'popup-simple.html';
     case 'emoji':
       return 'popup-emoji.html';
+    case 'futuristic':
+      return 'futuristic-rps.html';
     default:
       return 'popup.html';
   }

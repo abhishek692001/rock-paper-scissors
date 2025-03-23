@@ -1,0 +1,97 @@
+body {
+  font-family: 'Nunito', 'Comic Sans MS', Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd166, #ef476f);
+  color: #073b4c;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  width: 400px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 20px 0;
+  color: #073b4c;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#click-btn {
+  background: #26c6da;
+  color: white;
+}
+
+#win-btn {
+  background: #06d6a0;
+  color: white;
+}
+
+#lose-btn {
+  background: #ef476f;
+  color: white;
+}
+
+#draw-btn {
+  background: #ffd166;
+  color: #073b4c;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.log-section {
+  margin-top: 20px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-align: left;
+  height: 200px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.log-entry {
+  margin: 5px 0;
+  padding: 5px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.success {
+  color: #06d6a0;
+}
+
+.error {
+  color: #ef476f;
+}
+
+.info {
+  color: #26c6da;
+} 

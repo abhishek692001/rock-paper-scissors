@@ -16,29 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const userHandContainer = document.getElementById('user-hand-container');
   const computerHandContainer = document.getElementById('computer-hand-container');
   
-  // Sound elements
-  const clickSound = document.getElementById('click-sound');
-  const winSound = document.getElementById('win-sound');
-  const loseSound = document.getElementById('lose-sound');
-  const drawSound = document.getElementById('draw-sound');
-  
   // Initialize the game
   function init() {
+    // Initialize sound effects
+    if (!SoundEffects.init()) {
+      console.warn('Sound effects could not be initialized. Game will continue without sound.');
+    }
+    
     setupEventListeners();
-    handleSounds();
     resetGame();
-  }
-  
-  // Handle sound loading
-  function handleSounds() {
-    // Set fallback for audio playback errors
-    [clickSound, winSound, loseSound, drawSound].forEach(sound => {
-      if (sound) {
-        sound.addEventListener('error', () => {
-          console.log('Audio file could not be loaded, using silent audio');
-        });
-      }
-    });
   }
   
   // Set up event listeners
@@ -48,11 +34,21 @@ document.addEventListener('DOMContentLoaded', () => {
     paperBtn.addEventListener('click', () => playHand('paper'));
     scissorsBtn.addEventListener('click', () => playHand('scissors'));
     resetBtn.addEventListener('click', resetGame);
+    
+    // Add click event for any interaction to enable audio on iOS/Safari
+    document.addEventListener('click', function enableAudio() {
+      // Try to resume AudioContext if it was suspended
+      if (SoundEffects.audioContext && SoundEffects.audioContext.state === 'suspended') {
+        SoundEffects.audioContext.resume();
+      }
+      // Remove the event listener after first click
+      document.removeEventListener('click', enableAudio);
+    }, { once: true });
   }
   
   // Start the game
   function startGame() {
-    playSound(clickSound);
+    playSound('click');
     isGameActive = true;
     playBtn.style.display = 'none';
     toggleChoiceButtons(true);
@@ -129,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function playHand(userChoice) {
     if (!isGameActive) return;
     
-    playSound(clickSound);
+    playSound('click');
     
     // Disable choice buttons during animation
     toggleChoiceButtons(false);
@@ -203,13 +199,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (result === 'user') {
       userScore++;
       userScoreDisplay.textContent = userScore;
-      playSound(winSound);
+      playSound('win');
     } else if (result === 'computer') {
       computerScore++;
       computerScoreDisplay.textContent = computerScore;
-      playSound(loseSound);
+      playSound('lose');
     } else {
-      playSound(drawSound);
+      playSound('draw');
     }
   }
   
@@ -241,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Reset game
   function resetGame() {
-    playSound(clickSound);
+    playSound('click');
     userScore = 0;
     computerScore = 0;
     isGameActive = false;
@@ -270,13 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Helper function to play sound
-  function playSound(soundElement) {
-    if (soundElement && soundElement.play) {
-      soundElement.currentTime = 0;
-      soundElement.play().catch(err => {
-        console.log('Audio playback error:', err);
-      });
-    }
+  function playSound(soundName) {
+    SoundEffects.play(soundName);
   }
   
   // Helper function to capitalize first letter

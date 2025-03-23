@@ -33,14 +33,19 @@
         "emoji-ui.css",
         "popup-emoji.js",
         "popup-emoji.html",
-        "sounds/click.mp3",
-        "sounds/win.mp3",
-        "sounds/lose.mp3",
-        "sounds/draw.mp3",
         "mode-switcher.js",
         "popup-emoji-styles.css",
         "popup-init.js",
-        "styles.css"
+        "styles.css",
+        "sound-effects.js",
+        "sound-effects-fallback.js",
+        "sound-test.html",
+        "sound-test.js",
+        "sound-test.css",
+        "diagnostics.js",
+        "futuristic-rps.html",
+        "futuristic-rps.css",
+        "futuristic-rps.js"
       ],
       "matches": ["<all_urls>"]
     }
